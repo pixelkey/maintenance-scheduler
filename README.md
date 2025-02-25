@@ -143,7 +143,7 @@ Application settings in `config.json`:
    AWS_REGION=us-east-1
 
    # Google Calendar Settings
-   GOOGLE_CALENDAR_ID=primary  # Use 'primary' or 'all'
+   GOOGLE_CALENDAR_ID=primary
    GOOGLE_CLIENT_ID=your-client-id
    GOOGLE_CLIENT_SECRET=your-client-secret
    MOCK_CALENDAR=false
