@@ -1,0 +1,6 @@
+-- 
+Best regards,
+{{ sender_name }}
+{{ company_name }}
+support@example.com
+www.example.com

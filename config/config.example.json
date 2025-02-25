@@ -1,0 +1,29 @@
+{
+    "company": {
+        "name": "Example Company",
+        "sender_name": "Maintenance Team",
+        "sender_email": "maintenance@example.com"
+    },
+    "email": {
+        "subject_template": "Website Maintenance Scheduled for {maintenance_date}",
+        "template_html": "templates/maintenance_email.html",
+        "template_text": "templates/maintenance_email.txt"
+    },
+    "calendar": {
+        "check_all_calendars": true,
+        "create_events": true,
+        "event_visibility": "default",
+        "company_reminders": true,
+        "client_reminders": false,
+        "reminders": {
+            "email": 1440,
+            "popup": 60
+        }
+    },
+    "scheduling": {
+        "timezone": "Australia/Sydney",
+        "advance_notice_days": 14,
+        "minimum_notice_days": 2,
+        "allow_multiple_bookings_per_day": false
+    }
+}

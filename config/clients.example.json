@@ -1,0 +1,55 @@
+{
+    "clients": [
+        {
+            "id": "client1",
+            "client_first_name": "John",
+            "client_email_to": ["john@example.com"],
+            "client_email_cc": ["support@example.com"],
+            "client_website_name": "example.com",
+            "maintenance_window": {
+                "schedule_range_from": 15,
+                "schedule_range_to": 20,
+                "preferred_days": ["Tuesday", "Wednesday", "Thursday"],
+                "excluded_dates": ["2025-12-25", "2025-12-26"],
+                "preferred_time": "16:30",
+                "flexibility_hours": 1,
+                "duration_hours": 2
+            },
+            "active": true
+        },
+        {
+            "id": "client2",
+            "client_first_name": "Sarah",
+            "client_email_to": ["sarah@example.com"],
+            "client_email_cc": ["admin@example.com"],
+            "client_website_name": "clientsite.com",
+            "maintenance_window": {
+                "schedule_range_from": 1,
+                "schedule_range_to": 5,
+                "preferred_days": ["Monday", "Tuesday", "Wednesday"],
+                "excluded_dates": ["2025-12-25", "2025-12-26", "2026-01-01"],
+                "preferred_time": "16:30",
+                "flexibility_hours": 1,
+                "duration_hours": 2
+            },
+            "active": true
+        },
+        {
+            "id": "client3",
+            "client_first_name": "Michael",
+            "client_email_to": ["michael@example.com"],
+            "client_email_cc": ["tech@example.com"],
+            "client_website_name": "anothersite.com",
+            "maintenance_window": {
+                "schedule_range_from": 25,
+                "schedule_range_to": 30,
+                "preferred_days": ["Wednesday", "Thursday", "Friday"],
+                "excluded_dates": ["2025-12-25", "2025-12-26"],
+                "preferred_time": "16:30",
+                "flexibility_hours": 1,
+                "duration_hours": 2
+            },
+            "active": true
+        }
+    ]
+}

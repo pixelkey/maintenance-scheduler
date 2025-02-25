@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  scheduler:
+    build:
+      context: .
+      args:
+        - USER_ID=${USER_ID:-1000}
+        - GROUP_ID=${GROUP_ID:-1000}
+    volumes:
+      # Mount entire config directory
+      - type: bind
+        source: ./config
+        target: /app/config
+        
+      # Mount data directories for persistence
+      - type: bind
+        source: ./data
+        target: /app/data
+        
+      # Mount token for Google Calendar auth persistence with proper permissions
+      - type: bind
+        source: ./.google_token.json
+        target: /app/token.json
+        
+      # Mount templates directory
+      - type: bind
+        source: ./templates
+        target: /app/templates
+      
+      # Mount src directory
+      - type: bind
+        source: ./src
+        target: /app/src
+    
+    env_file: .env
+    environment:
+      # Override these in .env
+      - SMTP_HOST
+      - SMTP_PORT
+      - SMTP_USERNAME
+      - SMTP_PASSWORD
+      - GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - GOOGLE_CALENDAR_ID
+      - MOCK_CALENDAR
+      
+      # App settings
+      - PYTHONUNBUFFERED=1
+      - TZ=${CRON_TIMEZONE:-Australia/Adelaide}
+      
+    restart: unless-stopped

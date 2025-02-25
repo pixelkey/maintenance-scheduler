@@ -1,0 +1,56 @@
+# Virtual environment
+venv/
+
+# Environment and secrets
+.env
+.google_token.json
+token.json
+
+# Configuration files (except examples)
+config/*.json
+!config/*.example.json
+
+# Templates (except examples)
+templates/*.html
+templates/*.txt
+!templates/*.example.html
+!templates/*.example.txt
+
+# Runtime data
+data/
+sent_notifications.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Output and preview directories
+output/
+preview/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Docker
+.docker/

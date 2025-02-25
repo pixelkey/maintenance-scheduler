@@ -1,0 +1,4 @@
+# Run maintenance scheduler every minute (for testing)
+* 9 * * * . /tmp/env.sh && cd /app && /usr/local/bin/python /app/src/main.py >> /app/data/cron.log 2>&1
+
+# Empty line at end of file is required for cron

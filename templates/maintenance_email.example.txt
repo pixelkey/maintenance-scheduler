@@ -1,0 +1,9 @@
+Hi {{ client_first_name }},
+
+This is a notification that a maintenance window has been scheduled for {{ client_website_name }} on {{ maintenance_date }}. The maintenance is expected to take {{ maintenance_duration }} hours.
+
+During this time, there may be brief periods of website unavailability as we perform necessary updates and security patches.
+
+If you have any questions or concerns, please don't hesitate to contact us.
+
+{% include 'email_signature.example.txt' %}
