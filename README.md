@@ -233,7 +233,7 @@ The application uses Jinja2 templates for email generation. Example templates ar
 2. **View Logs**
    - Application logs: `data/maintenance_scheduler.log`
    - Cron logs: `data/cron.log`
-   - Note: The scheduler runs every minute at 9:00 (configurable via crontab)
+   - Note: The scheduler runs once daily at 9:00 AM (configurable via crontab)
 
 ## Google Calendar Integration
 
