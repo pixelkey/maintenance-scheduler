@@ -94,8 +94,15 @@ class MaintenanceScheduler:
         client_data = sent_data['sent_notifications'].get(client_id, {})
         
         current_month = datetime.now().strftime("%Y-%m")
+        
+        # Check if notification was sent this month
         if client_data.get('last_notification_sent', '')[:7] == current_month:
             return True
+            
+        # Also check if there's already a maintenance scheduled for the current month
+        if client_data.get('last_maintenance_date', '')[:7] == current_month:
+            return True
+            
         return False
 
     def is_date_available(self, target_date: datetime) -> bool:
