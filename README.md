@@ -342,3 +342,10 @@ The application uses Jinja2 templates for email generation. Example templates ar
 - Contributions welcome via pull requests
 - Licensed under the Apache License, Version 2.0 - see [LICENSE](./LICENSE) file for details
 - Copyright 2025 Pixel Key
+
+## TODO List
+
+### Future Improvements
+- **Enhanced Maintenance Notification System**
+  - Implement a more robust check for scheduled maintenance that validates against the client's maintenance window configuration
+  - Check if maintenance has already been scheduled for the client's configured maintenance period (instead of just checking the last_notification_sent month and last_maintenance_date month)
