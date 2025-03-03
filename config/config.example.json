@@ -25,5 +25,10 @@
         "advance_notice_days": 14,
         "minimum_notice_days": 2,
         "allow_multiple_bookings_per_day": false
+    },
+    "logs_cleanup": {
+        "output_files_retention_days": 90,
+        "maintenance_log_retention_days": 90,
+        "cron_log_retention_days": 90
     }
 }

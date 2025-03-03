@@ -15,23 +15,29 @@ def cleanup_output_folder(output_dir: str, logger: Any, days: int = 30) -> None:
     cutoff_date = datetime.now() - timedelta(days=days)
     count = 0
     
-    for file in os.listdir(output_dir):
-        file_path = os.path.join(output_dir, file)
-        if not os.path.isfile(file_path):
-            continue
+    for item in os.listdir(output_dir):
+        item_path = os.path.join(output_dir, item)
         
-        # Get file modification time
-        mtime = datetime.fromtimestamp(os.path.getmtime(file_path))
+        # Get item modification time
+        mtime = datetime.fromtimestamp(os.path.getmtime(item_path))
         
         if mtime < cutoff_date:
             try:
-                os.remove(file_path)
+                # If it's a directory, remove the entire directory tree
+                if os.path.isdir(item_path):
+                    import shutil
+                    shutil.rmtree(item_path)
+                    logger.info(f"Removed old output directory: {item}")
+                # If it's a file, remove just the file
+                elif os.path.isfile(item_path):
+                    os.remove(item_path)
+                    logger.info(f"Removed old output file: {item}")
+                
                 count += 1
-                logger.info(f"Removed old output file: {file}")
             except Exception as e:
-                logger.error(f"Failed to remove file {file}: {e}")
+                logger.error(f"Failed to remove {item}: {e}")
     
-    logger.info(f"Removed {count} old files from output directory")
+    logger.info(f"Removed {count} old items from output directory")
 
 
 def cleanup_log_file(log_file: str, logger: Any, days: int = 30) -> None:

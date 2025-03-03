@@ -340,9 +340,21 @@ class MaintenanceScheduler:
         """Clean up old output files and log entries."""
         output_dir = os.path.join(self.project_root, 'data', 'output')
         log_file = os.path.join(self.project_root, 'data', 'maintenance_scheduler.log')
+        cron_log_file = os.path.join(self.project_root, 'data', 'cron.log')
         
-        cleanup_output_folder(output_dir, self.logger)
-        cleanup_log_file(log_file, self.logger)
+        # Get retention days from config or use defaults
+        logs_config = self.config.get('logs_cleanup', {})
+        output_retention_days = logs_config.get('output_files_retention_days', 90)
+        maintenance_log_retention_days = logs_config.get('maintenance_log_retention_days', 90)
+        cron_log_retention_days = logs_config.get('cron_log_retention_days', 90)
+        
+        self.logger.info(f"Cleaning up files older than: output={output_retention_days} days, "
+                         f"maintenance log={maintenance_log_retention_days} days, "
+                         f"cron log={cron_log_retention_days} days")
+        
+        cleanup_output_folder(output_dir, self.logger, days=output_retention_days)
+        cleanup_log_file(log_file, self.logger, days=maintenance_log_retention_days)
+        cleanup_log_file(cron_log_file, self.logger, days=cron_log_retention_days)
 
     def run(self, preview_mode: bool = False, client_index: Optional[int] = None, force_date: Optional[str] = None) -> None:
         """Run the maintenance scheduling process."""

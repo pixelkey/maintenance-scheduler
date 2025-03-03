@@ -106,6 +106,11 @@ Application settings in `config.json`:
         "advance_notice_days": 14,
         "minimum_notice_days": 2,
         "allow_multiple_bookings_per_day": false
+    },
+    "logs_cleanup": {
+        "output_files_retention_days": 90,    // Days to keep email output files
+        "maintenance_log_retention_days": 90, // Days to keep maintenance log entries
+        "cron_log_retention_days": 90        // Days to keep cron log entries
     }
 }
 ```
@@ -180,11 +185,22 @@ The application includes automatic cleanup utilities for:
 
 ### Data Retention and Cleanup
 The application automatically manages data retention:
-- **Email Outputs:** Removed after 30 days
-- **Log Entries:** Cleaned up after 30 days
+- **Email Outputs:** Stored in `data/output/` directory with timestamped subdirectories
+- **Log Files:** Application logs in `data/maintenance_scheduler.log` and cron logs in `data/cron.log`
 - **Notification History:** Tracked in `data/sent_notifications.json`
 
-To customize retention periods, modify the cleanup utility calls in `main.py`.
+Retention periods are configurable in the `logs_cleanup` section of `config.json`:
+```json
+"logs_cleanup": {
+    "output_files_retention_days": 90,    // Days to keep email output files
+    "maintenance_log_retention_days": 90, // Days to keep maintenance log entries
+    "cron_log_retention_days": 90        // Days to keep cron log entries
+}
+```
+
+The cleanup process runs automatically when the scheduler is executed and:
+1. Removes email output directories older than `output_files_retention_days`
+2. Cleans up log entries older than the specified retention days for each log file
 
 ### Email Templates
 The application uses Jinja2 templates for email generation. Example templates are provided and should be copied and customized for your use:
