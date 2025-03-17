@@ -365,3 +365,8 @@ The application uses Jinja2 templates for email generation. Example templates ar
 - **Enhanced Maintenance Notification System**
   - Implement a more robust check for scheduled maintenance that validates against the client's maintenance window configuration
   - Check if maintenance has already been scheduled for the client's configured maintenance period (instead of just checking the last_notification_sent month and last_maintenance_date month)
+
+- ** Refactoring **
+  - Refactor duplicates - use DRY method where possible
+  - Cleanup nesting - reduce complexity
+  - Bugfix - only first listed date checked for availability when current checked date is already booked for maintenance
