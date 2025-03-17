@@ -262,8 +262,13 @@ class MaintenanceScheduler:
         """Send an email using configured email sender."""
         try:
             # Get recipients
-            to_emails = [email_message['To']]
-            cc_emails = [email_message['Cc']] if 'Cc' in email_message else None
+            to_header = email_message['To']
+            to_emails = [addr.strip() for addr in to_header.split(',')]
+            
+            cc_emails = None
+            if 'Cc' in email_message:
+                cc_header = email_message['Cc']
+                cc_emails = [addr.strip() for addr in cc_header.split(',')]
             
             # Send the email
             if self.email_sender.send_email(email_message, to_emails, cc_emails):
